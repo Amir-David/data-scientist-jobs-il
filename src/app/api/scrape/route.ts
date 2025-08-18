@@ -39,6 +39,7 @@ export async function GET() {
         const csvData = Papa.unparse(updatedJobs);
         await put(blobPath, csvData, {
             access: 'public',
+            allowOverwrite: true,
         });
 
         return NextResponse.json({
