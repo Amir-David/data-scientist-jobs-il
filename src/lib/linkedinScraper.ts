@@ -22,7 +22,7 @@ async function scrapeJobs(
     csvExists: boolean
 ): Promise<{ jobs: Job[]; done: boolean }> {
     const url = csvExists
-        ? `https://www.${domain}.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22Data%20Scientist%22&geoId=101620260&f_TPR=r43200&start=${start}`
+        ? `https://www.${domain}.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22Data%20Scientist%22&geoId=101620260&f_TPR=r86400&start=${start}`
         : `https://www.${domain}.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22Data%20Scientist%22&geoId=101620260&start=${start}`;
 
     const userAgent = randomUseragent.getRandom();

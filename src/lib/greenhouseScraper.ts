@@ -50,7 +50,7 @@ async function scrapeJobs(
                             title.toLowerCase().includes('scientist')
                         ) ||
                         (csvExists &&
-                            new Date(updated_at).getTime() < Date.now() - 12 * 60 * 60 * 1000)
+                            new Date(updated_at).getTime() < Date.now() - 24 * 60 * 60 * 1000)
                     ) {
                         return null;
                     }
