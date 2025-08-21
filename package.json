@@ -38,6 +38,7 @@
     "@types/node": "^20",
     "@types/papaparse": "^5.3.16",
     "@types/random-useragent": "^0.3.3",
+    "@types/randomcolor": "^0.5.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

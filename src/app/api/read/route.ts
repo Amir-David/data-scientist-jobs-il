@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { head } from '@vercel/blob';
 import Papa from 'papaparse';
 import { Job } from '@/types/jobs';
-var randomColor = require('randomcolor');
+import randomColor from 'randomcolor';
 
 export async function GET() {
     try {
@@ -18,9 +18,11 @@ export async function GET() {
                 if (!acc[date]) {
                     acc[date] = { date, Linkedin: 0, Career_Sites: 0 };
                 }
-                from === 'Linkedin'
-                    ? (acc[date].Linkedin = (acc[date].Linkedin ?? 0) + 1)
-                    : (acc[date].Career_Sites = (acc[date].Career_Sites ?? 0) + 1);
+                if (from === 'Linkedin') {
+                    acc[date].Linkedin = (acc[date].Linkedin ?? 0) + 1;
+                } else {
+                    acc[date].Career_Sites = (acc[date].Career_Sites ?? 0) + 1;
+                }
                 return acc;
             }, {} as Record<string, Job>)
         ).sort((a, b) => (a.date ?? '').localeCompare(b.date ?? ''));
@@ -32,9 +34,11 @@ export async function GET() {
                 if (!acc[date]) {
                     acc[date] = { date, Linkedin: 0, Career_Sites: 0 };
                 }
-                from === 'Linkedin'
-                    ? (acc[date].Linkedin = (acc[date].Linkedin ?? 0) + 1)
-                    : (acc[date].Career_Sites = (acc[date].Career_Sites ?? 0) + 1);
+                if (from === 'Linkedin') {
+                    acc[date].Linkedin = (acc[date].Linkedin ?? 0) + 1;
+                } else {
+                    acc[date].Career_Sites = (acc[date].Career_Sites ?? 0) + 1;
+                }
                 return acc;
             }, {} as Record<string, Job>)
         ).sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''));
@@ -73,6 +77,7 @@ export async function GET() {
             },
         });
     } catch (error) {
+        console.error('Error processing jobs data:', error);
         return NextResponse.json({ success: false }, { status: 404 });
     }
 }

@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export function SiteHeader() {
     return (
@@ -9,7 +10,7 @@ export function SiteHeader() {
                     asChild
                     className='h-auto p-0 text-lg font-semibold text-black dark:text-foreground'
                 >
-                    <a href='/'>data-scientist-jobs-il</a>
+                    <Link href='/'>data-scientist-jobs-il</Link>
                 </Button>
 
                 <div className='ml-auto flex items-center gap-2'>
@@ -17,6 +18,7 @@ export function SiteHeader() {
                         <a
                             href='https://github.com/Amir-David/data-scientist-jobs-il'
                             target='_blank'
+                            rel='noopener noreferrer'
                             className='dark:text-foreground'
                         >
                             GitHub
