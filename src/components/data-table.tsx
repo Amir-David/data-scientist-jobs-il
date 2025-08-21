@@ -194,13 +194,13 @@ export function DataTable({ data: initialData }: { data: Job[] }) {
     });
 
     return (
-        <div className='relative flex flex-col gap-4 overflow-auto px-4 lg:px-6'>
+        <div className='relative flex flex-col gap-4 px-4 lg:px-6'>
             <div className='flex w-full items-center justify-center'>
                 <Input
                     placeholder='Search Jobs'
                     value={globalFilter ?? ''}
                     onChange={(e) => setGlobalFilter(e.target.value)}
-                    className='max-w-sm m-2 overflow-auto'
+                    className='max-w-sm'
                 />
             </div>
             <ScrollArea type='always' className='rounded-md border'>
