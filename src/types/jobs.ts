@@ -1,11 +1,17 @@
 export interface Job {
-    id: string;
-    title: string;
-    company_name: string;
-    from: string;
-    absolute_url: string;
+    id?: string;
+    title?: string;
+    company_name?: string;
+    from?: string;
+    absolute_url?: string;
     updated_at?: string;
     first_published?: string;
-    scraped_at: string;
+    scraped_at?: string;
     location?: { name?: string };
+    date?: string;
+    fill?: string;
+    Linkedin?: number;
+    Career_Sites?: number;
+    count?: number;
+    company?: string;
 }
