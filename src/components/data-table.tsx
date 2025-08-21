@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Job } from '@/types/jobs';
 import {
     IconChevronLeft,
@@ -59,7 +60,7 @@ const columns: ColumnDef<Job>[] = [
             <Button
                 variant='ghost'
                 onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-                className='p-0 h-auto w-full justify-start inline-flex items-center gap-2 w-full justify-start text-left whitespace-normal'
+                className='p-0 h-auto w-full justify-start inline-flex items-center gap-2 w-full justify-start text-left whitespace-normal min-w-[200px]'
             >
                 <span className='min-w-0 line-clamp-2 text-left leading-tight'>Title</span>
                 <ArrowUpDown className='h-4 w-4 shrink-0' />
@@ -202,60 +203,66 @@ export function DataTable({ data: initialData }: { data: Job[] }) {
                     className='max-w-sm m-2 overflow-auto'
                 />
             </div>
-            <div className='overflow-hidden rounded-lg border'>
-                <Table className='w-full table-auto lg:table-fixed'>
-                    <colgroup>
-                        <col className='w-2/5' />
-                        <col className='w-0.75/5' />
-                        <col className='w-0.75/5' />
-                        <col className='w-0.75/5' />
-                        <col className='w-0.75/5' />
-                    </colgroup>
-                    <TableHeader className='bg-muted sticky top-0 z-10'>
-                        {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <TableHead key={header.id} colSpan={header.colSpan}>
-                                            {header.isPlaceholder
-                                                ? null
-                                                : flexRender(
-                                                      header.column.columnDef.header,
-                                                      header.getContext()
-                                                  )}
-                                        </TableHead>
-                                    );
-                                })}
-                            </TableRow>
-                        ))}
-                    </TableHeader>
-                    <TableBody>
-                        {table.getRowModel().rows?.length ? (
-                            table.getRowModel().rows.map((row) => (
-                                <TableRow
-                                    key={row.id}
-                                    data-state={row.getIsSelected() && 'selected'}
-                                >
-                                    {row.getVisibleCells().map((cell) => (
-                                        <TableCell key={cell.id}>
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext()
-                                            )}
-                                        </TableCell>
-                                    ))}
+            <ScrollArea type='always' className='rounded-md border'>
+                <div className='overflow-hidden rounded-lg border'>
+                    <Table className='w-full table-auto lg:table-fixed'>
+                        <colgroup>
+                            <col className='w-2/5' />
+                            <col className='w-0.75/5' />
+                            <col className='w-0.75/5' />
+                            <col className='w-0.75/5' />
+                            <col className='w-0.75/5' />
+                        </colgroup>
+                        <TableHeader className='bg-muted sticky top-0 z-10'>
+                            {table.getHeaderGroups().map((headerGroup) => (
+                                <TableRow key={headerGroup.id}>
+                                    {headerGroup.headers.map((header) => {
+                                        return (
+                                            <TableHead key={header.id} colSpan={header.colSpan}>
+                                                {header.isPlaceholder
+                                                    ? null
+                                                    : flexRender(
+                                                          header.column.columnDef.header,
+                                                          header.getContext()
+                                                      )}
+                                            </TableHead>
+                                        );
+                                    })}
                                 </TableRow>
-                            ))
-                        ) : (
-                            <TableRow>
-                                <TableCell colSpan={columns.length} className='h-24 text-center'>
-                                    No results.
-                                </TableCell>
-                            </TableRow>
-                        )}
-                    </TableBody>
-                </Table>
-            </div>
+                            ))}
+                        </TableHeader>
+                        <TableBody>
+                            {table.getRowModel().rows?.length ? (
+                                table.getRowModel().rows.map((row) => (
+                                    <TableRow
+                                        key={row.id}
+                                        data-state={row.getIsSelected() && 'selected'}
+                                    >
+                                        {row.getVisibleCells().map((cell) => (
+                                            <TableCell key={cell.id}>
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext()
+                                                )}
+                                            </TableCell>
+                                        ))}
+                                    </TableRow>
+                                ))
+                            ) : (
+                                <TableRow>
+                                    <TableCell
+                                        colSpan={columns.length}
+                                        className='h-24 text-center'
+                                    >
+                                        No results.
+                                    </TableCell>
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
+                </div>
+                <ScrollBar orientation='horizontal' />
+            </ScrollArea>
             <div className='flex items-center justify-between px-4'>
                 <div className='text-muted-foreground hidden flex-1 text-sm lg:flex'></div>
                 <div className='flex w-full items-center gap-8 lg:w-fit'>
