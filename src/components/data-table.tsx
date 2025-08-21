@@ -194,16 +194,16 @@ export function DataTable({ data: initialData }: { data: Job[] }) {
     });
 
     return (
-        <div className='relative flex flex-col gap-4 px-4 lg:px-6'>
+        <div className='relative flex flex-col gap-4 overflow-auto px-4 lg:px-6'>
             <div className='flex w-full items-center justify-center'>
                 <Input
                     placeholder='Search Jobs'
                     value={globalFilter ?? ''}
                     onChange={(e) => setGlobalFilter(e.target.value)}
-                    className='max-w-sm'
+                    className='max-w-sm m-2 overflow-auto'
                 />
             </div>
-            <ScrollArea type='always' className='rounded-md border'>
+            <ScrollArea type='always' className='rounded-md'>
                 <div className='overflow-hidden rounded-lg border'>
                     <Table className='w-full table-auto lg:table-fixed'>
                         <colgroup>
@@ -263,7 +263,7 @@ export function DataTable({ data: initialData }: { data: Job[] }) {
                 </div>
                 <ScrollBar orientation='horizontal' />
             </ScrollArea>
-            <div className='flex items-center justify-between px-4'>
+            <div className='flex items-center justify-between px-4 m-1'>
                 <div className='text-muted-foreground hidden flex-1 text-sm lg:flex'></div>
                 <div className='flex w-full items-center gap-8 lg:w-fit'>
                     <div className='hidden items-center gap-2 lg:flex'>
